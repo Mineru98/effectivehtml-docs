@@ -1,1 +1,3 @@
-/* 스타일 토큰 및 전역 CSS는 별도 에이전트가 styles/tokens.css 등으로 담당합니다. */
+@import "./styles/tokens.css";
+@import "./styles/prose.css";
+@import "./layout/shell.css";
