@@ -1,0 +1,243 @@
+/* tokens.css — effectivehtml.com/docs 실측 디자인 토큰 (DESIGN.md section 2) */
+
+@font-face {
+  font-family: "Inter Tight Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/fonts/inter-tight-latin-wght-normal.woff2) format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Inter Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url(/fonts/inter-latin-wght-normal.woff2) format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Pretendard Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 45 920;
+  src: url(/fonts/pretendard-variable.woff2) format("woff2-variations");
+}
+
+:root {
+  /* 브랜드 팔레트 */
+  --ink: #141413;
+  --ink-soft: #2a2926;
+  --paper: #f3e6d2;
+  --paper-bright: #fff9ef;
+  --paper-deep: #eadcc7;
+  --paper-muted: #ded1be;
+  --paper-edge: #d6b995;
+  --cobalt: #1649d8;
+  --lilac: #a884e8;
+  --green: #1bae61;
+  --pink: #f09aa8;
+  --coral: #e8744f;
+  --copy-on-paper: #575149;
+  --copy-on-ink: #cfc2b2;
+  --strong-on-ink: #d9cdbd;
+  --muted: #6e675e;
+  --muted-on-ink: #a99c8c;
+  --line: #b9ae9d;
+  --rule-on-ink: #f3e6d238;
+  --rule-on-paper: #1414133d;
+  --rule-on-paper-strong: #1414136b;
+  --shadow: #00000057;
+  --content-max: 90rem;
+
+  /* 텍스트 스케일 */
+  --text-caption: .68rem;
+  --text-label-compact: .76rem;
+  --text-label: .84rem;
+  --text-body-small: .88rem;
+  --text-body: 1rem;
+
+  /* 라운딩 */
+  --radius-sheet: .35rem;
+  --radius-control: .38rem;
+  --radius-panel: .5rem;
+  --radius-frame: .55rem;
+  --radius-full: 999px;
+
+  /* 모션 */
+  --duration-fast: .16s;
+  --duration-preview: .24s;
+  --duration-fold: .42s;
+  --ease-out-expressive: cubic-bezier(.16, 1, .3, 1);
+  --ease-fold: cubic-bezier(.645, .045, .355, 1);
+
+  /* 폰트 패밀리 */
+  --font-body: "Inter Variable", "Pretendard Variable", Inter, Pretendard, sans-serif;
+  --font-display: "Inter Tight Variable", "Inter Variable", "Pretendard Variable", Pretendard, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif;
+
+  /* Fumadocs 매핑 — 라이트 */
+  --color-fd-background: var(--paper-bright);
+  --color-fd-foreground: var(--ink);
+  --color-fd-muted: #eee2d0;
+  --color-fd-muted-foreground: #625b52;
+  --color-fd-popover: var(--paper-bright);
+  --color-fd-popover-foreground: var(--ink);
+  --color-fd-card: var(--paper);
+  --color-fd-card-foreground: var(--ink);
+  --color-fd-primary: var(--cobalt);
+  --color-fd-primary-foreground: var(--paper-bright);
+  --color-fd-secondary: #eee2d0;
+  --color-fd-secondary-foreground: var(--ink);
+  --color-fd-accent: #e2d3bd;
+  --color-fd-accent-foreground: var(--ink);
+  --color-fd-ring: var(--cobalt);
+  --color-fd-border: #1414132e;
+  --color-fd-overlay: #14141375;
+
+  /* Fumadocs 콜아웃 / diff 색상 */
+  --color-fd-info: oklch(62.3% .214 259.815);
+  --color-fd-warning: oklch(76.9% .188 70.08);
+  --color-fd-error: oklch(63.7% .237 25.331);
+  --color-fd-success: oklch(72.3% .219 149.579);
+  --color-fd-idea: oklch(70.5% .209 60.849);
+  --color-fd-diff-remove: #c80a641f;
+  --color-fd-diff-remove-symbol: #e60a64;
+  --color-fd-diff-add: #0eb4641a;
+  --color-fd-diff-add-symbol: #0ac864;
+
+  /* 레이아웃 그리드 변수 */
+  --fd-layout-width: 97rem;
+  --fd-sidebar-width: 0px;
+  --fd-toc-width: 0px;
+  --fd-header-height: 0px;
+  --fd-toc-popover-height: 0px;
+  --fd-sidebar-drawer-offset: 100%;
+  --fd-docs-height: 100dvh;
+  --spacing: .25rem;
+
+  /* Tailwind 스케일 변수 (prose 규칙 참조용) */
+  --text-sm: .875rem;
+  --text-lg: 1.125rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --radius-sm: .25rem;
+  --radius-md: .375rem;
+  --radius-lg: .5rem;
+  --radius-xl: .75rem;
+  --radius-2xl: 1rem;
+  --blur-sm: 8px;
+  --default-transition-duration: .15s;
+}
+
+/* Fumadocs 매핑 — 다크 */
+.dark {
+  --color-fd-background: var(--ink);
+  --color-fd-foreground: var(--paper-bright);
+  --color-fd-muted: var(--ink-soft);
+  --color-fd-muted-foreground: #c9bcaa;
+  --color-fd-popover: var(--ink-soft);
+  --color-fd-popover-foreground: var(--paper-bright);
+  --color-fd-card: #211f1d;
+  --color-fd-card-foreground: var(--paper-bright);
+  --color-fd-border: #f3e6d233;
+  --color-fd-primary: var(--lilac);
+  --color-fd-primary-foreground: var(--ink);
+  --color-fd-secondary: #2f2d29;
+  --color-fd-secondary-foreground: var(--paper-bright);
+  --color-fd-accent: #393631;
+  --color-fd-accent-foreground: var(--paper-bright);
+  --color-fd-ring: var(--lilac);
+}
+
+/* 베이스 리셋 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-fd-background);
+  color: var(--color-fd-foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Docs 레이아웃 오버라이드 */
+#nd-docs-layout {
+  --effective-docs-sticky-offset: calc(var(--fd-header-height, 3.5rem) + var(--fd-toc-popover-height, 2.5rem) + 1rem);
+  font-family: var(--font-body);
+}
+
+#nd-docs-layout article :is(h1, h2, h3, h4, [id]) {
+  scroll-margin-top: var(--effective-docs-sticky-offset);
+}
+
+#nd-docs-layout h1,
+#nd-docs-layout h2,
+#nd-docs-layout h3 {
+  letter-spacing: -.035em;
+  font-family: var(--font-display);
+}
+
+@media (max-width: 1280px) {
+  #nd-docs-layout {
+    --fd-toc-popover-height: 2.75rem;
+  }
+}
+
+/* docs-* 클래스 */
+.docs-wordmark,
+h1,
+h2,
+h3,
+strong {
+  font-family: var(--font-display);
+}
+
+.docs-catalog-link {
+  align-items: center;
+  gap: .4rem;
+  display: inline-flex;
+}
+
+.docs-catalog-star {
+  color: var(--green);
+  font-size: var(--text-label);
+  line-height: 1;
+}
+
+.docs-wordmark {
+  letter-spacing: -.025em;
+  align-items: center;
+  gap: .55rem;
+  font-weight: 760;
+  display: inline-flex;
+}
+
+.docs-wordmark-mark {
+  background: linear-gradient(var(--cobalt) 0 0) 0 0 / 42% 100% no-repeat,
+    linear-gradient(var(--green) 0 0) 100% 0 / 42% 42% no-repeat,
+    linear-gradient(var(--pink) 0 0) 100% 100% / 42% 42% no-repeat;
+  width: .9rem;
+  height: .9rem;
+  display: inline-block;
+}
+
+/* 한글 자간 완화 — 라틴용 음수 자간(-.035em 등)은 한글 렌더링에서 과도하게
+   조밀해 보이므로 한국어 헤딩에서는 -.02em으로 완화합니다 (DESIGN.md section 3). */
+:lang(ko) #nd-docs-layout h1,
+:lang(ko) #nd-docs-layout h2,
+:lang(ko) #nd-docs-layout h3 {
+  letter-spacing: -.02em;
+}
