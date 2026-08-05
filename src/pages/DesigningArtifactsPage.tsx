@@ -102,7 +102,11 @@ export default function DesigningArtifactsPage() {
       next={nav.next}
     >
       <p>
-        <a href="https://github.com/plannotator/effective-html/blob/main/skills/design-artifact/SKILL.md">
+        <a
+          href="https://github.com/plannotator/effective-html/blob/main/skills/design-artifact/SKILL.md"
+          target="_blank"
+          rel="noreferrer"
+        >
           <code>design-artifact</code>
         </a>
         는 HTML 페이지, 리포트, 플랜, 랜딩 페이지, 데모, 덱, 작은 도구를 위한 크리에이티브 디렉션을
