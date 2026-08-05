@@ -1,6 +1,8 @@
 import { useCallback, useRef, useState } from "react";
 import type { CSSProperties, KeyboardEvent } from "react";
 import "./guide.css";
+import { newTabProps } from "../lib/links";
+import { BalancedText } from "./BalancedText";
 import { ArrowUpRight } from "./icons";
 
 export type FidelityTab = {
@@ -78,7 +80,7 @@ export function FidelityWorkbench({ tabs }: { tabs: FidelityTab[] }) {
           className="fw-preview"
           href={active.href}
           aria-label={active.imageAlt}
-          {...(active.external ? { target: "_blank", rel: "noreferrer" } : {})}
+          {...newTabProps(active.href, active.external)}
         >
           <img
             key={active.image}
@@ -93,12 +95,16 @@ export function FidelityWorkbench({ tabs }: { tabs: FidelityTab[] }) {
           </span>
         </a>
         <div className="fw-ledger">
-          <h2>{active.title}</h2>
+          <h2>
+            <BalancedText breakSentences={false}>{active.title}</BalancedText>
+          </h2>
           <dl>
             {LEDGER_LABELS.map((label, i) => (
               <div key={label}>
                 <dt>{label}</dt>
-                <dd>{ledgerValues[i]}</dd>
+                <dd>
+                  <BalancedText breakSentences={false}>{ledgerValues[i]}</BalancedText>
+                </dd>
               </div>
             ))}
           </dl>

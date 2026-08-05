@@ -1,4 +1,6 @@
 import "./guide.css";
+import { newTabProps } from "../lib/links";
+import { BalancedText } from "./BalancedText";
 import { ArrowUpRight, FileCode2, Wrench } from "./icons";
 
 export type HandoffCard = {
@@ -14,26 +16,19 @@ const KIND_ICONS = {
   skill: Wrench,
 } as const;
 
-function isExternal(href: string) {
-  return /^https?:\/\//.test(href);
-}
-
 export function GuideHandoff({ cards }: { cards: HandoffCard[] }) {
   return (
     <nav className="gh-handoff" aria-label="이 레슨 적용하기">
       {cards.map((card) => {
         const LeadingIcon = KIND_ICONS[card.kind];
-        const external = isExternal(card.href);
         return (
-          <a
-            key={card.href}
-            href={card.href}
-            {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
-          >
+          <a key={card.href} href={card.href} {...newTabProps(card.href)}>
             <LeadingIcon />
             <span>
               <strong>{card.label}</strong>
-              <small>{card.description}</small>
+              <small>
+                <BalancedText breakSentences={false}>{card.description}</BalancedText>
+              </small>
             </span>
             <ArrowUpRight />
           </a>

@@ -1,0 +1,26 @@
+/* balance.css — BalancedText(react-wrap-balancer) 지원 규칙 */
+
+/* Balancer는 래퍼에 inline-block을 인라인 스타일로 지정합니다. 균형을 잡으려고
+   계산한 max-width가 컨테이너를 넘지 못하게 상한을 둡니다. */
+[data-br] {
+  max-width: 100%;
+}
+
+/* 한국어는 음절 사이 어디서나 줄이 넘어가는 것이 기본이라, 폭이 좁아지면
+   "다이어그램"이 "다이 / 어그램"으로 쪼개집니다. keep-all로 어절(띄어쓰기)
+   단위로만 넘기고, 끊을 수 없는 URL·식별자는 넘칠 바에야 잘리게 둡니다.
+   코드 블록은 공백이 곧 의미라 제외합니다. */
+#nd-docs-layout :not(pre):not(code),
+.preview-page :not(pre):not(code) {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 문장마다 줄을 넘기는 것은 한 문장이 한 줄에 들어갈 만큼 폭이 있을 때만
+   읽기 쉬워집니다. 좁은 화면에서는 줄바꿈을 숨기고, 앞에 남는 공백이 문장
+   사이를 잇게 둡니다. */
+@media (max-width: 640px) {
+  .bt-break {
+    display: none;
+  }
+}

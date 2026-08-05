@@ -1,9 +1,12 @@
 import { useEffect, useState, type MouseEvent, type ReactNode } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Provider as BalancerProvider } from 'react-wrap-balancer'
 import MobileHeader from './MobileHeader'
 import Sidebar from './Sidebar'
 import Toc, { type TocItem } from './Toc'
 import TocPopover from './TocPopover'
+import { BalancedText } from '../components/BalancedText'
+import { balanceProse } from '../components/balanceProse'
 import { Check, ChevronLeft, ChevronRight, Copy, PanelLeft, Search } from './icons'
 
 export interface PageLink {
@@ -70,8 +73,14 @@ export default function DocsShell({
   children,
 }: DocsShellProps) {
   const [collapsed, setCollapsed] = useState(false)
+  const [columnChanged, setColumnChanged] = useState(false)
   const navigate = useNavigate()
   const location = useLocation()
+
+  const toggleSidebar = () => {
+    setColumnChanged(true)
+    setCollapsed((v) => !v)
+  }
 
   useEffect(() => {
     document.title = `${title} · Effective HTML`
@@ -104,42 +113,49 @@ export default function DocsShell({
   }
 
   return (
-    <div
-      id="nd-docs-layout"
-      data-sidebar-collapsed={collapsed || undefined}
-      onClick={onAnchorClick}
-    >
-      <MobileHeader />
-      <Sidebar collapsed={collapsed} onToggleCollapsed={() => setCollapsed((v) => !v)} />
-      <div className="nd-sidebar-panel" aria-hidden={!collapsed}>
-        <button
-          type="button"
-          className="nd-icon-btn"
-          aria-label="사이드바 펼치기"
-          onClick={() => setCollapsed(false)}
-        >
-          <PanelLeft size={20} />
-        </button>
-        <button type="button" className="nd-icon-btn" aria-label="검색">
-          <Search size={20} />
-        </button>
-      </div>
-      <TocPopover title={title} items={toc} />
-      <Toc items={toc} />
-      <article id="nd-page">
-        <h1 className="nd-page-title">{title}</h1>
-        <p className="nd-page-description">{description}</p>
-        <div className="nd-page-actions">
-          <CopyMarkdownButton markdown={markdown} />
+    <BalancerProvider>
+      <div
+        id="nd-docs-layout"
+        data-sidebar-collapsed={collapsed || undefined}
+        data-column-changed={columnChanged || undefined}
+        onClick={onAnchorClick}
+      >
+        <MobileHeader />
+        <Sidebar collapsed={collapsed} onToggleCollapsed={toggleSidebar} />
+        <div className="nd-sidebar-panel" aria-hidden={!collapsed}>
+          <button
+            type="button"
+            className="nd-icon-btn"
+            aria-label="사이드바 펼치기"
+            onClick={toggleSidebar}
+          >
+            <PanelLeft size={20} />
+          </button>
+          <button type="button" className="nd-icon-btn" aria-label="검색">
+            <Search size={20} />
+          </button>
         </div>
-        <div className="prose flex-1">{children}</div>
-        {(prev || next) && (
-          <footer className="nd-page-footer">
-            {prev && <PageCard card={prev} kind="prev" />}
-            {next && <PageCard card={next} kind="next" />}
-          </footer>
-        )}
-      </article>
-    </div>
+        <TocPopover title={title} items={toc} />
+        <Toc items={toc} />
+        <article id="nd-page">
+          <h1 className="nd-page-title">
+            <BalancedText breakSentences={false}>{title}</BalancedText>
+          </h1>
+          <p className="nd-page-description">
+            <BalancedText>{description}</BalancedText>
+          </p>
+          <div className="nd-page-actions">
+            <CopyMarkdownButton markdown={markdown} />
+          </div>
+          <div className="prose flex-1">{balanceProse(children)}</div>
+          {(prev || next) && (
+            <footer className="nd-page-footer">
+              {prev && <PageCard card={prev} kind="prev" />}
+              {next && <PageCard card={next} kind="next" />}
+            </footer>
+          )}
+        </article>
+      </div>
+    </BalancerProvider>
   )
 }

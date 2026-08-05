@@ -1,5 +1,7 @@
 import type { CSSProperties } from "react";
 import "./guide.css";
+import { newTabProps } from "../lib/links";
+import { BalancedText } from "./BalancedText";
 import { ArrowUpRight } from "./icons";
 
 export type EvidenceCheck = {
@@ -58,7 +60,9 @@ export function GuideChapterEvidence(props: GuideChapterEvidenceProps) {
     <section className="ge-evidence" style={style}>
       <header>
         <span>{props.eyebrow}</span>
-        <h2>{props.title}</h2>
+        <h2>
+          <BalancedText breakSentences={false}>{props.title}</BalancedText>
+        </h2>
       </header>
       {props.variant === "comparison" ? (
         <ComparisonBody {...props} />
@@ -70,17 +74,15 @@ export function GuideChapterEvidence(props: GuideChapterEvidenceProps) {
 }
 
 function DefaultBody(props: EvidenceIframeProps | EvidenceImageProps) {
+  const openHref = props.kind === "iframe" ? props.src : props.href;
+
   return (
     <div className="ge-body">
       <div className="ge-visual">
         {props.kind === "iframe" ? (
           <iframe src={props.src} title={props.title} loading="lazy" />
         ) : (
-          <a
-            href={props.href}
-            aria-label={props.title}
-            {...(props.external ? { target: "_blank", rel: "noreferrer" } : {})}
-          >
+          <a href={props.href} aria-label={props.title} {...newTabProps(props.href, props.external)}>
             <img
               src={props.image}
               alt={props.imageAlt}
@@ -90,7 +92,11 @@ function DefaultBody(props: EvidenceIframeProps | EvidenceImageProps) {
             />
           </a>
         )}
-        <a className="ge-open" href={props.kind === "iframe" ? props.src : props.href}>
+        <a
+          className="ge-open"
+          href={openHref}
+          {...newTabProps(openHref, props.kind === "image" && props.external)}
+        >
           전체 아티팩트 열기
           <ArrowUpRight />
         </a>
@@ -99,7 +105,10 @@ function DefaultBody(props: EvidenceIframeProps | EvidenceImageProps) {
         {props.checks.map((check) => (
           <div key={check.label}>
             <dt>{check.label}</dt>
-            <dd>{check.value}</dd>
+            <dd>
+              {/* 좁은 사이드 컬럼이라 문장마다 줄을 넘기면 조각납니다. */}
+              <BalancedText breakSentences={false}>{check.value}</BalancedText>
+            </dd>
           </div>
         ))}
       </dl>
@@ -114,14 +123,23 @@ function ComparisonBody(props: EvidenceComparisonProps) {
         <div className="ge-md">
           <span>{props.mdEyebrow}</span>
           <strong>{props.mdTitle}</strong>
-          <p>{props.mdBody}</p>
+          <p>
+            <BalancedText>{props.mdBody}</BalancedText>
+          </p>
           <ol>
             {props.mdList.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item}>
+                <BalancedText breakSentences={false}>{item}</BalancedText>
+              </li>
             ))}
           </ol>
         </div>
-        <a className="ge-specimen" href={props.imageHref} aria-label={props.imageAlt}>
+        <a
+          className="ge-specimen"
+          href={props.imageHref}
+          aria-label={props.imageAlt}
+          {...newTabProps(props.imageHref)}
+        >
           <img
             src={props.image}
             alt={props.imageAlt}
@@ -135,7 +153,9 @@ function ComparisonBody(props: EvidenceComparisonProps) {
           </span>
         </a>
       </div>
-      <p className="ge-verdict">{props.verdict}</p>
+      <p className="ge-verdict">
+        <BalancedText>{props.verdict}</BalancedText>
+      </p>
     </>
   );
 }

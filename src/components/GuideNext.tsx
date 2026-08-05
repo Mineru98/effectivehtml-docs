@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import "./guide.css";
+import { isStandaloneDocument } from "../lib/links";
+import { BalancedText } from "./BalancedText";
 import { ArrowRight } from "./icons";
 
 export type GuideNextProps = {
@@ -8,22 +10,20 @@ export type GuideNextProps = {
   description: string;
 };
 
-function isExternal(href: string) {
-  return /^https?:\/\//.test(href);
-}
-
 export function GuideNext({ href, title, description }: GuideNextProps) {
   const inner = (
     <>
       <span>
         <strong>{title}</strong>
-        <small>{description}</small>
+        <small>
+          <BalancedText breakSentences={false}>{description}</BalancedText>
+        </small>
       </span>
       <ArrowRight />
     </>
   );
 
-  if (isExternal(href)) {
+  if (isStandaloneDocument(href)) {
     return (
       <a className="gn-next" href={href} target="_blank" rel="noreferrer">
         {inner}
