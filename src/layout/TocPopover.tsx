@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { ChevronDown } from './icons'
-import { TocAnchorList, useActiveAnchor, type TocItem } from './Toc'
+import { TocAnchorList, useToc, type TocItem } from './Toc'
 
 const CIRCUMFERENCE = 47.12388980384689
 
 export default function TocPopover({ title, items }: { title: string; items: TocItem[] }) {
   const [open, setOpen] = useState(false)
   const [progress, setProgress] = useState(0)
-  const active = useActiveAnchor(items)
+  const { states, activeId } = useToc(items)
 
   useEffect(() => {
     let raf = 0
@@ -53,11 +53,13 @@ export default function TocPopover({ title, items }: { title: string; items: Toc
             transform="rotate(-90 9 9)"
           />
         </svg>
-        <span className="nd-toc-title">{active ? (items.find((i) => i.id === active)?.title ?? title) : title}</span>
+        <span className="nd-toc-title">
+          {activeId ? (items.find((i) => i.id === activeId)?.title ?? title) : title}
+        </span>
         <ChevronDown size={16} className="nd-chevron" />
       </button>
       <div className="nd-toc-popover-list">
-        <TocAnchorList items={items} active={active} onNavigate={() => setOpen(false)} />
+        <TocAnchorList items={items} states={states} onNavigate={() => setOpen(false)} />
       </div>
     </div>
   )

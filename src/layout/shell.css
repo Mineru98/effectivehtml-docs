@@ -9,8 +9,8 @@
     "sidebar sidebar toc-popover toc toc"
     "sidebar sidebar main toc toc";
   grid-template-rows:
-    var(--fd-docs-row-1)
     calc(var(--fd-docs-row-2) - var(--fd-docs-row-1))
+    calc(var(--fd-docs-row-3) - var(--fd-docs-row-2))
     1fr;
   grid-template-columns:
     minmax(min-content, 1fr)
@@ -31,6 +31,11 @@
   --fd-header-height: 3.5rem;
   --fd-toc-popover-height: 2.75rem;
   --fd-sidebar-col: var(--fd-sidebar-width);
+}
+
+/* 컬럼 전환은 사이드바를 접고 펼 때만 적용합니다. 항상 켜 두면 뷰포트가 브레이크포인트를
+   넘을 때도 애니메이션이 걸려 중간 폭에서 멈춘 값이 그대로 남습니다. */
+#nd-docs-layout[data-column-changed="true"] {
   transition: grid-template-columns var(--duration-fold) var(--ease-fold);
 }
 
@@ -435,6 +440,8 @@
   flex-direction: column;
   padding: .25rem 1rem .75rem;
   border-top: 1px solid var(--color-fd-border);
+  /* 팝오버 컨테이너가 반투명이라, 목록은 본문이 비치지 않도록 자체 배경을 깔아 둡니다. */
+  background: var(--color-fd-background);
 }
 
 .nd-toc-popover[data-open="true"] .nd-toc-popover-list {
@@ -450,17 +457,23 @@
 /* ============ TOC (≥1280px) ============ */
 
 .nd-toc {
+  display: none;
   grid-area: toc;
   position: sticky;
   top: var(--fd-docs-row-1);
   align-self: start;
-  display: flex;
   flex-direction: column;
   width: var(--fd-toc-width);
   height: calc(100dvh - var(--fd-docs-row-1));
   padding: 3rem 1rem .5rem 0;
   overflow: hidden;
   line-height: 1.5;
+}
+
+@media (min-width: 1280px) {
+  .nd-toc {
+    display: flex;
+  }
 }
 
 .nd-toc h3 {
@@ -481,6 +494,60 @@
   flex-direction: column;
 }
 
+.nd-toc-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 활성 구간만 clip-path로 드러내는 게이지와, 그 끝을 따라가는 dot */
+.nd-toc-thumb {
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  transform-origin: center;
+}
+
+.nd-toc-thumb svg {
+  position: absolute;
+  clip-path: polygon(
+    0 var(--track-top, 0),
+    100% var(--track-top, 0),
+    100% var(--track-bottom, 0),
+    0 var(--track-bottom, 0)
+  );
+  transition: clip-path var(--duration-preview) var(--ease-out-expressive);
+}
+
+.nd-toc-thumb path {
+  stroke: var(--color-fd-primary);
+}
+
+.nd-toc-thumb-dot {
+  position: absolute;
+  left: 0;
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--color-fd-primary);
+  offset-distance: var(--offset-distance, 0);
+  opacity: var(--opacity, 0);
+  transition:
+    opacity var(--duration-fast) var(--ease-out-expressive),
+    offset-distance var(--duration-preview) var(--ease-out-expressive);
+}
+
+[dir="rtl"] .nd-toc-thumb {
+  transform: scaleX(-1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nd-toc-thumb svg,
+  .nd-toc-thumb-dot {
+    transition: none;
+  }
+}
+
 .nd-toc-anchor {
   position: relative;
   display: block;
@@ -493,11 +560,12 @@
   transition: color var(--duration-fast) var(--ease-out-expressive);
 }
 
-.nd-toc-anchor:first-child {
+/* 게이지가 리스트의 첫 자식이라 :first-child 대신 타입 기준으로 잡습니다. */
+.nd-toc-anchor:first-of-type {
   padding-top: 0;
 }
 
-.nd-toc-anchor:last-child {
+.nd-toc-anchor:last-of-type {
   padding-bottom: 0;
 }
 
@@ -514,6 +582,7 @@
   left: 0;
   top: -6px;
   bottom: 0;
+  z-index: -1;
   width: 17px;
   height: calc(100% + 6px);
   overflow: visible;
