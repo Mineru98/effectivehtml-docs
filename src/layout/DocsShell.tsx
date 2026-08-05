@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import MobileHeader from './MobileHeader'
 import Sidebar from './Sidebar'
@@ -71,11 +71,17 @@ export default function DocsShell({
 }: DocsShellProps) {
   const [collapsed, setCollapsed] = useState(false)
 
+  useEffect(() => {
+    document.title = `${title} · Effective HTML`
+    const meta = document.querySelector('meta[name="description"]')
+    if (meta) meta.setAttribute('content', description)
+  }, [title, description])
+
   return (
     <div id="nd-docs-layout" data-sidebar-collapsed={collapsed || undefined}>
       <MobileHeader />
       <Sidebar collapsed={collapsed} onToggleCollapsed={() => setCollapsed((v) => !v)} />
-      <div className="nd-sidebar-panel" style={{ display: collapsed ? undefined : 'none' }}>
+      <div className="nd-sidebar-panel" aria-hidden={!collapsed}>
         <button
           type="button"
           className="nd-icon-btn"

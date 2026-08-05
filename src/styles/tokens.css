@@ -163,8 +163,11 @@ html {
 body {
   margin: 0;
   font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
   background: var(--color-fd-background);
   color: var(--color-fd-foreground);
+  -webkit-font-smoothing: antialiased;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -234,10 +237,3 @@ strong {
   display: inline-block;
 }
 
-/* 한글 자간 완화 — 라틴용 음수 자간(-.035em 등)은 한글 렌더링에서 과도하게
-   조밀해 보이므로 한국어 헤딩에서는 -.02em으로 완화합니다 (DESIGN.md section 3). */
-:lang(ko) #nd-docs-layout h1,
-:lang(ko) #nd-docs-layout h2,
-:lang(ko) #nd-docs-layout h3 {
-  letter-spacing: -.02em;
-}

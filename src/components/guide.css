@@ -142,9 +142,10 @@
   text-transform: uppercase;
 }
 
-.ge-evidence h2 {
+.ge-evidence header > h2 {
   max-width: 22ch;
   margin: 0;
+  color: var(--paper-bright);
   font-size: clamp(1.8rem, 3.4vw, 3rem);
   font-weight: 790;
   letter-spacing: -0.04em;
@@ -173,7 +174,7 @@
   background: var(--paper-bright);
 }
 
-.ge-visual > a {
+.ge-visual > a:not(.ge-open) {
   display: block;
   width: 100%;
   height: 100%;
@@ -465,6 +466,7 @@
 
 .fw-ledger h2 {
   margin: 0;
+  color: var(--paper-bright);
   font-size: clamp(1.8rem, 3vw, 3.25rem);
   font-weight: 790;
   letter-spacing: -0.04em;

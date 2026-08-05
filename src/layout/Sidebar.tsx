@@ -44,7 +44,7 @@ export function ThemeToggle() {
     <button
       type="button"
       className="nd-theme-toggle"
-      aria-label={dark ? '라이트 모드로 전환' : '다크 모드로 전환'}
+      aria-label="테마 전환"
       onClick={() => setDark((v) => !v)}
     >
       <Sun className="nd-icon-sun" />
@@ -72,20 +72,25 @@ export function SidebarNavLinks({ onNavigate }: { onNavigate?: () => void }) {
           <li>
             <a href={CATALOG_URL} className="nd-nav-link docs-catalog-link" target="_blank" rel="noreferrer">
               <span className="docs-catalog-star" aria-hidden>★</span>
-              <span>Catalog</span>
+              <span>카탈로그</span>
             </a>
           </li>
           <li>
             <a href={GITHUB_URL} className="nd-nav-link" target="_blank" rel="noreferrer">
+              <ExternalLink size={14} />
               <span>GitHub</span>
-              <ExternalLink size={14} className="nd-nav-external" />
             </a>
           </li>
         </ul>
       </li>
       {DOC_LINKS.map(({ to, label }) => (
         <li key={to}>
-          <NavLink to={to} end={to === '/docs'} className="nd-nav-link" onClick={onNavigate}>
+          <NavLink
+            to={to}
+            end={to === '/docs'}
+            className={({ isActive }) => `nd-nav-link${isActive ? ' active' : ''}`}
+            onClick={onNavigate}
+          >
             {label}
           </NavLink>
         </li>
