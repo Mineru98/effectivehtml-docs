@@ -9,10 +9,12 @@ import DiagramsPage from './pages/DiagramsPage'
 import DecksPage from './pages/DecksPage'
 import PlansPage from './pages/PlansPage'
 import PreviewPage from './pages/PreviewPage'
+import ScrollToTop from './layout/ScrollToTop'
 
 function App() {
   return (
     <HashRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Navigate to="/docs" replace />} />
         <Route path="/docs" element={<GuidePage />} />
