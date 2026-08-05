@@ -1,8 +1,18 @@
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { PAGES } from '../data/pages'
 import './preview.css'
 
+const TITLE = '전체 페이지 미리보기 · Effective HTML'
+const DESCRIPTION = '9개 문서 페이지를 한 화면에서 비교합니다.'
+
 export default function PreviewPage() {
+  useEffect(() => {
+    document.title = TITLE
+    const meta = document.querySelector('meta[name="description"]')
+    if (meta) meta.setAttribute('content', DESCRIPTION)
+  }, [])
+
   return (
     <div className="preview-page">
       <header className="preview-header">
@@ -25,7 +35,12 @@ export default function PreviewPage() {
               <p>{page.description}</p>
               <code>{page.path}</code>
             </div>
-            <iframe title={page.title} src={page.path} loading="lazy" />
+            {/* HashRouter이므로 iframe도 해시 URL로 진입해야 합니다. */}
+            <iframe
+              title={page.title}
+              src={`${import.meta.env.BASE_URL}#${page.path}`}
+              loading="lazy"
+            />
           </article>
         ))}
       </div>

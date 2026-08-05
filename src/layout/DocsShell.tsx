@@ -1,5 +1,5 @@
-import { useEffect, useState, type ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useState, type MouseEvent, type ReactNode } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import MobileHeader from './MobileHeader'
 import Sidebar from './Sidebar'
 import Toc, { type TocItem } from './Toc'
@@ -70,6 +70,8 @@ export default function DocsShell({
   children,
 }: DocsShellProps) {
   const [collapsed, setCollapsed] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     document.title = `${title} · Effective HTML`
@@ -77,8 +79,36 @@ export default function DocsShell({
     if (meta) meta.setAttribute('content', description)
   }, [title, description])
 
+  // HashRouter는 `#` 뒤 전체를 라우트로 읽으므로, 섹션 앵커(`href="#id"`)를 그대로 두면
+  // 클릭 시 현재 경로가 날아갑니다. 링크는 위임으로 가로채 `경로#id` 형태로 옮깁니다.
+  useEffect(() => {
+    if (!location.hash) return
+    const el = document.getElementById(decodeURIComponent(location.hash.slice(1)))
+    if (!el) return
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    el.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' })
+  }, [location.pathname, location.hash])
+
+  const onAnchorClick = (event: MouseEvent<HTMLDivElement>) => {
+    if (event.defaultPrevented || event.button !== 0) return
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    const anchor = (event.target as HTMLElement).closest('a')
+    const href = anchor?.getAttribute('href')
+    if (!href || !href.startsWith('#') || href.length < 2) return
+    // HashRouter에서 <Link>는 `#/docs/...`로 렌더링됩니다. 라우트 링크는 건드리지 않습니다.
+    if (href.startsWith('#/')) return
+    const id = decodeURIComponent(href.slice(1))
+    if (!document.getElementById(id)) return
+    event.preventDefault()
+    navigate(`${location.pathname}#${id}`)
+  }
+
   return (
-    <div id="nd-docs-layout" data-sidebar-collapsed={collapsed || undefined}>
+    <div
+      id="nd-docs-layout"
+      data-sidebar-collapsed={collapsed || undefined}
+      onClick={onAnchorClick}
+    >
       <MobileHeader />
       <Sidebar collapsed={collapsed} onToggleCollapsed={() => setCollapsed((v) => !v)} />
       <div className="nd-sidebar-panel" aria-hidden={!collapsed}>

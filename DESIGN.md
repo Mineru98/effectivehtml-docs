@@ -320,3 +320,40 @@ background-size: 5px 5px;
 3. **roving tabindex** — 탭형 컴포넌트(FidelityWorkbench)는 활성 탭만 탭 순서에 두고 화살표 키로 이동합니다.
 4. **명도 대비** — 본문은 `--copy-on-paper` / `--copy-on-ink` 쌍을 배경에 맞게 사용하고, 보조 텍스트는 `--muted` / `--muted-on-ink`를 사용해 대비를 유지합니다.
 5. **시맨틱 구조 유지** — 사이드바 nav, 아티클 h1→h2 순서, TOC 앵커 링크 등 원본의 헤딩 계층과 랜드마크를 그대로 유지합니다.
+
+---
+
+## 8. 원본과의 의도적 차이
+
+원본 대조 검증(9개 경로 전수)에서 확인된 URL 차이 2건입니다. 콘텐츠·레이아웃 차이가 아니라 **배포 구조에서 비롯된 필연적 차이**이며, 원본을 그대로 따르면 오히려 깨집니다.
+
+### 8.1 카탈로그 링크는 절대 URL
+
+| | 값 |
+|---|---|
+| 원본 | `/catalog` (사이트 내부 이동) |
+| 구현 | `https://www.effectivehtml.com/catalog` + `target="_blank"` |
+
+`/catalog`는 이번 재구현 범위(문서 9개 경로)에 포함되지 않아 앱에 라우트가 없습니다. 상대경로로 두면 404가 나므로 원본 사이트로 나가는 절대 URL을 사용합니다. `NAV_LINKS`의 GitHub 링크도 같은 이유로 절대 URL입니다.
+
+### 8.2 예시 자산 경로에 `/assets` 접두사
+
+| | 값 |
+|---|---|
+| 원본 | `/examples/release-readiness/wireframe.html` |
+| 구현 | `/assets/examples/release-readiness/wireframe.html` |
+
+정적 자산을 `public/assets/` 아래에 두는 Vite 컨벤션을 따르므로 서빙 경로에 `/assets` 접두사가 붙습니다. 가리키는 파일 자체는 원본과 동일합니다(`wireframe.html`, `prototype.html`, `wireframe-desktop.png`, `prototype-desktop.png`).
+
+### 8.3 라우팅은 HashRouter
+
+| | 값 |
+|---|---|
+| 원본 | `/docs/wireframes` (Next.js 서버 라우팅) |
+| 구현 | `/#/docs/wireframes` (`HashRouter`) |
+
+서버 설정 없이 어떤 정적 호스팅에도 그대로 올릴 수 있도록 해시 라우팅을 사용합니다. history fallback(모든 경로 → `index.html`)이 필요 없고, `/preview`의 iframe도 `#` 경로로 진입합니다.
+
+섹션 앵커는 `#/docs/plans#when-html-helps` 형태로 **경로 뒤에 한 번 더** 붙습니다. `HashRouter`가 `#` 뒤 전체를 라우트로 읽기 때문에, `href="#id"`를 그대로 두면 클릭 시 경로가 날아갑니다. `DocsShell`이 레이아웃 루트에서 위임 클릭 핸들러로 이 링크들을 가로채 `경로#id`로 이동시키고, `location.hash` 변화에 따라 스크롤합니다(`prefers-reduced-motion` 존중). 각 페이지의 `href="#id"` 마크업 자체는 원본 그대로 유지됩니다.
+
+> 이 세 건 외에는 섹션 구성·문단·불릿·TOC·prev/next·예시 임베드가 9개 경로 모두 원본과 1:1 대응합니다.

@@ -1,4 +1,4 @@
-import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import GuidePage from './pages/GuidePage'
 import WhyHtmlPage from './pages/WhyHtmlPage'
 import DesigningArtifactsPage from './pages/DesigningArtifactsPage'
@@ -12,7 +12,7 @@ import PreviewPage from './pages/PreviewPage'
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Navigate to="/docs" replace />} />
         <Route path="/docs" element={<GuidePage />} />
@@ -26,7 +26,7 @@ function App() {
         <Route path="/docs/plans" element={<PlansPage />} />
         <Route path="/preview" element={<PreviewPage />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
