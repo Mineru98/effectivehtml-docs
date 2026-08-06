@@ -5,7 +5,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   column-gap: 1.5rem;
-  width: min(54rem, calc(100vw - 2rem));
+  width: 100%;
   margin-block: 1.25rem 2.75rem;
   border-top: 1px solid color-mix(in srgb, var(--color-fd-foreground) 32%, transparent);
 }
@@ -117,7 +117,7 @@
 
 /* ============ GuideChapterEvidence (.ge-evidence) ============ */
 .ge-evidence {
-  width: min(54rem, calc(100vw - 2rem));
+  width: 100%;
   margin-block: 2.5rem 3rem;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--color-fd-foreground) 28%, transparent);
@@ -360,7 +360,7 @@
 
 /* ============ FidelityWorkbench (.fw-workbench) ============ */
 .fw-workbench {
-  width: min(54rem, calc(100vw - 2rem));
+  width: 100%;
   margin-block: 2.5rem 3rem;
   overflow: hidden;
   border: 1px solid color-mix(in srgb, var(--color-fd-foreground) 28%, transparent);
@@ -540,7 +540,7 @@
 /* ============ GuideHandoff (.gh-handoff) ============ */
 .gh-handoff {
   display: grid;
-  width: min(54rem, calc(100vw - 2rem));
+  width: 100%;
   margin-block: 2.5rem 3rem;
   border-top: 1px solid var(--color-fd-foreground);
 }
@@ -621,6 +621,11 @@
   background: var(--ink);
   color: var(--paper-bright);
   text-decoration: none;
+}
+
+/* 다크 모드에서는 페이지 배경이 --ink 라 카드가 배경에 묻힙니다. 한 단계 밝은 면을 씁니다. */
+.dark .gn-next {
+  background: var(--ink-soft);
 }
 
 .gn-next span {
@@ -783,17 +788,6 @@ figcaption.cb-titlebar {
 }
 
 /* ============ 반응형 폭 (컴포넌트 정의 뒤에 와야 우선순위가 유지됩니다) ============ */
-
-/* TOC 컬럼이 사라지는 1280px 이하에서는 본문 컬럼이 넓어지므로, 54rem 고정폭을
-   유지하면 블록이 아티클 밖으로 새어 나갑니다. */
-@media (max-width: 1280px) {
-  .ge-evidence,
-  .fw-workbench,
-  .gh-handoff,
-  .gs-sources {
-    width: 100%;
-  }
-}
 
 @media (max-width: 640px) {
   .ge-evidence,

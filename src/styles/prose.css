@@ -2,10 +2,17 @@
 
 .prose {
   --tw-prose-size: 1;
+  --prose-measure: 72ch;
   color: var(--tw-prose-body);
-  max-width: 72ch;
   font-size: calc(1rem * var(--tw-prose-size));
   line-height: calc(1.75rem * var(--tw-prose-size));
+}
+
+/* 읽기 흐름을 타는 텍스트 블록만 72ch 로 묶고, 컨테이너 자체는 아티클 폭을 그대로 씁니다.
+   .prose 에 max-width 를 걸면 gs-sources·gh-handoff 같은 넓은 컴포넌트가 폭을 되찾으려고
+   고정값(54rem)을 쓰게 되고, 그 값이 아티클 콘텐츠 폭과 어긋나면 우측으로 새어 나갑니다. */
+.prose > :is(p, ul, ol, dl, blockquote, h1, h2, h3, h4, h5, h6, table, figure) {
+  max-width: var(--prose-measure);
 }
 
 .prose {
