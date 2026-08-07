@@ -36,7 +36,6 @@ export default function MobileHeader() {
   return (
     <>
       <header className="nd-mobile-header">
-        <Wordmark />
         <button type="button" className="nd-icon-btn" aria-label="검색">
           <Search size={20} />
         </button>
@@ -48,6 +47,7 @@ export default function MobileHeader() {
         >
           <PanelLeft size={20} />
         </button>
+        <Wordmark />
       </header>
       <MobileDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
     </>
