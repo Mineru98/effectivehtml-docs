@@ -147,3 +147,11 @@ vite.config.ts.timestamp-*
 .codegraph
 # Local Netlify folder
 .netlify
+
+# issue-* workspace — evidence only stays committed so issue comments render
+.issue/**
+!.issue/*/
+!.issue/*/evidence/
+!.issue/*/evidence/**
+.issue/**/.auth.json
+.issue/**/storage-state.json
