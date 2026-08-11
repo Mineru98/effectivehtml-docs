@@ -20,11 +20,12 @@
 2. **토큰 단일 출처** — 모든 컴포넌트는 CSS 커스텀 프로퍼티만 참조하며 하드코딩을 금지합니다.
 3. **한국어 우선, 고유명사 원문 유지** — 본문은 한국어, 고유명사(Effective HTML, GitHub, Anthropic 등)와 `SKILL.md` 코드블록은 원문을 유지합니다.
 
-### 문서 페이지 (9개)
+### 문서 페이지 (10개)
 
 | 경로 | 한국어 제목 |
 |---|---|
 | `/docs` | Effective HTML 가이드 |
+| `/docs/skill-exhibit` | 스킬 활용 사례 |
 | `/docs/why-html` | 왜 HTML인가? |
 | `/docs/designing-artifacts` | 아티팩트 디자인하기 |
 | `/docs/choosing-fidelity` | 충실도 선택하기 |
@@ -284,6 +285,13 @@ background-size: 5px 5px;
 - cobalt 바: 좌측, 42% × 100%
 - green 사각형: 우상단, 42% × 42%
 - pink 사각형: 우하단, 42% × 42%
+
+### 5.9 SkillExhibit
+
+- 범용 `html`과 `design-artifact`, 목적별 전문 스킬을 하나의 선택 흐름과 2열 사례 카드로 전시한다.
+- 카드는 `--color-fd-card`와 `--color-fd-border`를 사용하고, 전문 스킬별 밝은 액센트는 상단 레일에만 쓴다.
+- 카드 라벨과 예시 요청 라벨은 본문 대비를 보장하기 위해 `--color-fd-primary`를 사용한다. 라이트에서는 cobalt, 다크에서는 lilac으로 전환된다.
+- 카드 그리드는 기존 small 브레이크포인트인 **640px** 미만에서 한 열로 전환한다. 새 반응형 분기점을 만들지 않는다.
 
 ---
 
