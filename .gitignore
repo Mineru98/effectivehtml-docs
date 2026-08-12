@@ -143,6 +143,7 @@ vite.config.ts.timestamp-*
 .vite/
 
 .om*
+.playwright*
 .gjc
 .codegraph
 # Local Netlify folder
