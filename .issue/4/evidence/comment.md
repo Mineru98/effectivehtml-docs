@@ -30,13 +30,14 @@
 
 ## 프로토타입 상태 전환
 
-| 실패 상태 | 다시 시도 후 준비 상태 |
-| --- | --- |
-| ![프로토타입 실패 상태](https://raw.githubusercontent.com/Mineru98/effectivehtml-docs/main/.issue/4/evidence/after/prototype-failed-mobile.webp) | ![프로토타입 재시도 준비 상태](https://raw.githubusercontent.com/Mineru98/effectivehtml-docs/main/.issue/4/evidence/after/prototype-ready-mobile.webp) |
+| 실패 상태 | 재시도 준비 | 결제 완료 |
+| --- | --- | --- |
+| ![프로토타입 실패 상태](https://raw.githubusercontent.com/Mineru98/effectivehtml-docs/main/.issue/4/evidence/after/prototype-failed-mobile.webp) | ![프로토타입 재시도 준비 상태](https://raw.githubusercontent.com/Mineru98/effectivehtml-docs/main/.issue/4/evidence/after/prototype-ready-mobile.webp) | ![프로토타입 결제 완료 상태](https://raw.githubusercontent.com/Mineru98/effectivehtml-docs/main/.issue/4/evidence/after/prototype-succeeded-mobile.webp) |
 
 ## 검증
 
 - `npm run build` 통과
 - 여섯 개 실행 결과 링크와 프로토타입 상태 전환 확인
 - 1440×900 데스크톱·390×844 모바일에서 가로 넘침 없음
+- 키보드 Enter로 사례 링크 이동과 실패 → 재시도 준비 → 결제 완료 상태 전환 확인
 - 독립 QA에서 토큰 사용, 실제 DOM 결과물, 한국어 줄바꿈, 캡처 유효성 확인
