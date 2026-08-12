@@ -1,7 +1,7 @@
 {
   "version": 1,
   "provider": "github",
-  "updatedAt": "2026-08-12T09:43:51.808Z",
+  "updatedAt": "2026-08-12T10:33:30.891Z",
   "nodes": {
     "1": {
       "number": 1,
@@ -24,7 +24,7 @@
     "4": {
       "number": 4,
       "title": "스킬 사례 실행 결과 미리보기 추가",
-      "status": "in-process",
+      "status": "close",
       "labels": [
         "enhancement"
       ],
