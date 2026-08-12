@@ -85,6 +85,7 @@ export default function SkillExhibitPage() {
             <h3>{exhibit.question}</h3>
             <p>{exhibit.answer}</p>
             <div className="skill-exhibit-prompt"><span>예시 요청</span><code>{exhibit.prompt}</code></div>
+            <Link className="skill-exhibit-run" to={`/docs/skill-results?skill=${exhibit.name}`}>실행 결과 보기</Link>
             <footer>{exhibit.next}</footer>
           </article>
         ))}
