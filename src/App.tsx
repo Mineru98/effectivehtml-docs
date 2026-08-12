@@ -1,5 +1,6 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import GuidePage from './pages/GuidePage'
+import SkillExhibitPage from './pages/SkillExhibitPage'
 import WhyHtmlPage from './pages/WhyHtmlPage'
 import DesigningArtifactsPage from './pages/DesigningArtifactsPage'
 import ChoosingFidelityPage from './pages/ChoosingFidelityPage'
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Navigate to="/docs" replace />} />
         <Route path="/docs" element={<GuidePage />} />
+        <Route path="/docs/skill-exhibit" element={<SkillExhibitPage />} />
         <Route path="/docs/why-html" element={<WhyHtmlPage />} />
         <Route path="/docs/designing-artifacts" element={<DesigningArtifactsPage />} />
         <Route path="/docs/choosing-fidelity" element={<ChoosingFidelityPage />} />

@@ -28,6 +28,14 @@ export const PAGES: PageMeta[] = [
     markdown: '# Effective HTML 가이드\n\n> 에이전트로 만드는 와이어프레임, 목업, 프로토타입, 다이어그램, 덱 및 기타 HTML 아티팩트를 위한 짧은 가이드.\n\n에이전트는 와이어프레임, 목업, 프로토타입, 다이어그램, 덱, 작은 인터페이스를 만들 수 있습니다. 긴 프롬프트나 Markdown 파일보다 이해하기 쉬울 때가 있습니다.\n\n이 문서는 그런 사용 방식을 짧게 안내합니다. 스킬을 설치하거나 고정된 프로세스를 따를 필요는 없습니다. 예시를 참고해 필요한 아티팩트를 에이전트에게 요청하세요.\n\n이 가이드는 다음을 참고합니다.\n\n## 예시 둘러보기\n\n[카탈로그](https://www.effectivehtml.com/catalog)에서 라이브 HTML 아티팩트, SVG, 예시, 스킬을 둘러보세요. 가이드의 나머지에서는 [HTML이 도움이 되는 이유](/docs/why-html), [와이어프레임](/docs/wireframes), [프로토타입](/docs/prototypes), [다이어그램](/docs/diagrams), [덱](/docs/decks), [플랜](/docs/plans)을 짧게 살펴봅니다.\n',
   },
   {
+    slug: 'skill-exhibit',
+    path: '/docs/skill-exhibit',
+    navTitle: '스킬 활용 사례',
+    title: '스킬 활용 사례',
+    description: '질문에서 시작해 적합한 Effective HTML 스킬과 다음 작업을 고르는 여섯 가지 사례입니다.',
+    markdown: '# 스킬 활용 사례\n\n> 질문을 먼저 정하고, 가장 좁은 전문 스킬을 고르세요. 시각적 방향이 열려 있을 때만 design-artifact를 조합합니다.\n\n## 먼저 질문을 고르세요\n\nhtml은 일반 요청을 전문 스킬로 라우팅합니다. 구조를 비교할 때는 wireframe, 흐름과 상태를 시험할 때는 prototype, 실행 순서를 보존할 때는 plan, 관계를 설명할 때는 diagram을 선택합니다.\n\n## 여섯 가지 스킬 릴레이\n\n각 카드는 한 가지 실제 작업 질문과 그에 맞는 스킬 순서를 보여 줍니다.',
+  },
+  {
     slug: 'why-html',
     path: '/docs/why-html',
     navTitle: '왜 HTML인가?',
@@ -103,6 +111,7 @@ export const PAGE_BY_PATH: Record<string, PageMeta> = Object.fromEntries(
 
 export const TOC: Record<string, TocItem[]> = {
   'guide': [{ id: 'browse-examples', title: '예시 둘러보기' }],
+  'skill-exhibit': [{ id: 'choose-question', title: '먼저 질문을 고르세요' }, { id: 'skill-relay', title: '여섯 가지 스킬 릴레이' }],
   'why-html': [{ id: 'what-html-adds', title: 'HTML이 더하는 것' }, { id: 'keep-markdown-when-it-is-enough', title: '마크다운으로 충분할 때' }],
   'designing-artifacts': [{ id: 'what-the-skill-covers', title: '스킬이 다루는 것' }, { id: 'copy-the-canonical-skill', title: '정식 스킬 복사하기' }],
   'choosing-fidelity': [{ id: 'wireframe', title: '와이어프레임' }, { id: 'mockup', title: '목업' }, { id: 'prototype', title: '프로토타입' }, { id: 'diagram', title: '다이어그램' }, { id: 'plan', title: '플랜' }],
@@ -114,8 +123,9 @@ export const TOC: Record<string, TocItem[]> = {
 }
 
 export const PREV_NEXT: Record<string, { prev?: PageLink; next?: PageLink }> = {
-  'guide': { next: { href: '/docs/why-html', title: '왜 HTML인가?', description: '아이디어를 보거나 직접 써보는 것이 읽기보다 명확할 때 HTML 아티팩트를 사용하세요.' } },
-  'why-html': { prev: { href: '/docs', title: 'Effective HTML 가이드', description: '에이전트로 만드는 와이어프레임, 목업, 프로토타입, 다이어그램, 덱 및 기타 HTML 아티팩트를 위한 짧은 가이드.' }, next: { href: '/docs/designing-artifacts', title: '아티팩트 디자인하기', description: 'design-artifact 스킬로 팔레트, 타이포, 레이아웃, 테마, 시각적 레지스터를 의도적으로 결정하세요.' } },
+  'guide': { next: { href: '/docs/skill-exhibit', title: '스킬 활용 사례', description: '질문에서 시작해 적합한 Effective HTML 스킬과 다음 작업을 고르는 여섯 가지 사례입니다.' } },
+  'skill-exhibit': { prev: { href: '/docs', title: 'Effective HTML 가이드', description: '에이전트로 만드는 와이어프레임, 목업, 프로토타입, 다이어그램, 덱 및 기타 HTML 아티팩트를 위한 짧은 가이드.' }, next: { href: '/docs/why-html', title: '왜 HTML인가?', description: '아이디어를 보거나 직접 써보는 것이 읽기보다 명확할 때 HTML 아티팩트를 사용하세요.' } },
+  'why-html': { prev: { href: '/docs/skill-exhibit', title: '스킬 활용 사례', description: '질문에서 시작해 적합한 Effective HTML 스킬과 다음 작업을 고르는 여섯 가지 사례입니다.' }, next: { href: '/docs/designing-artifacts', title: '아티팩트 디자인하기', description: 'design-artifact 스킬로 팔레트, 타이포, 레이아웃, 테마, 시각적 레지스터를 의도적으로 결정하세요.' } },
   'designing-artifacts': { prev: { href: '/docs/why-html', title: '왜 HTML인가?', description: '아이디어를 보거나 직접 써보는 것이 읽기보다 명확할 때 HTML 아티팩트를 사용하세요.' }, next: { href: '/docs/choosing-fidelity', title: '충실도 선택하기', description: '와이어프레임, 목업, 프로토타입, 다이어그램, 플랜의 차이를 이해하세요.' } },
   'choosing-fidelity': { prev: { href: '/docs/designing-artifacts', title: '아티팩트 디자인하기', description: 'design-artifact 스킬로 팔레트, 타이포, 레이아웃, 테마, 시각적 레지스터를 의도적으로 결정하세요.' }, next: { href: '/docs/wireframes', title: '와이어프레임', description: 'HTML 와이어프레임으로 레이아웃, 위계, 내비게이션, 반응형 구조를 비교하세요.' } },
   'wireframes': { prev: { href: '/docs/choosing-fidelity', title: '충실도 선택하기', description: '와이어프레임, 목업, 프로토타입, 다이어그램, 플랜의 차이를 이해하세요.' }, next: { href: '/docs/prototypes', title: '프로토타입', description: '인터랙티브 HTML 프로토타입으로 제품 플로우, 동작, 상태를 시도해 보세요.' } },

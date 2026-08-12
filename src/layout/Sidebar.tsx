@@ -7,6 +7,7 @@ export const CATALOG_URL = 'https://www.effectivehtml.com/catalog'
 
 export const DOC_LINKS: { to: string; label: string }[] = [
   { to: '/docs', label: 'Effective HTML 가이드' },
+  { to: '/docs/skill-exhibit', label: '스킬 활용 사례' },
   { to: '/docs/why-html', label: '왜 HTML인가?' },
   { to: '/docs/designing-artifacts', label: '아티팩트 디자인하기' },
   { to: '/docs/choosing-fidelity', label: '충실도 선택하기' },
