@@ -1,0 +1,23 @@
+.skill-result-page { min-height: 100dvh; padding: var(--result-page-gutter) clamp(var(--result-page-gutter), 4vw, var(--result-page-gutter-wide)); background: var(--color-fd-background); color: var(--color-fd-foreground); }
+.skill-result-page > header, .skill-result-page > nav, .skill-result-canvas, .result-caption { max-width: var(--result-content-max); margin-inline: auto; }
+.skill-result-page header > a, .skill-result-page nav a { color: var(--color-fd-primary); font-size: var(--text-label); font-weight: 760; }
+.skill-result-page :is(a, button):focus-visible { outline: 2px solid var(--color-fd-ring); outline-offset: 3px; }
+.skill-result-page header p { margin: 2rem 0 .45rem; color: var(--color-fd-muted-foreground); font-size: var(--text-caption); }
+.skill-result-page h1 { margin: 0; font-size: var(--text-result-title); line-height: 1.1; }
+.skill-result-page nav { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 2rem; }
+.skill-result-page nav a { padding: .4rem .6rem; border: 1px solid var(--color-fd-border); text-decoration: none; }
+.skill-result-page nav a[aria-current='page'] { background: var(--color-fd-foreground); color: var(--color-fd-background); }
+.skill-result-canvas { margin-top: calc(var(--spacing) * 6); padding: clamp(var(--result-page-gutter), 4vw, var(--result-canvas-padding)); border: 1px solid var(--color-fd-border); border-top: var(--radius-control) solid var(--color-fd-primary); background: var(--color-fd-card); min-height: var(--result-canvas-min-height); }
+.result-kicker, .result-caption, .prototype-state p { color: var(--color-fd-muted-foreground); line-height: 1.6; }
+.result-route, .result-diagram { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; padding: 1rem; margin: 2rem 0; background: var(--color-fd-background); border: 1px solid var(--color-fd-border); }
+.result-route code, .result-diagram div { padding: .45rem .65rem; background: var(--color-fd-muted); }
+.result-swatches { display: grid; grid-template-columns: repeat(4, 1fr); height: 9rem; }
+.result-swatches i:nth-child(1) { background: var(--ink); }.result-swatches i:nth-child(2) { background: var(--paper); }.result-swatches i:nth-child(3) { background: var(--cobalt); }.result-swatches i:nth-child(4) { background: var(--lilac); }
+.result-spec { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }.result-spec dt { color: var(--color-fd-primary); font-size: var(--text-caption); font-weight: 780; }.result-spec dd { margin: .5rem 0 0; }
+.wireframe-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }.wireframe-pair section { padding: 1rem; border: 2px solid var(--color-fd-foreground); }.wire-line { height: 1rem; margin: 1rem 0; background: var(--color-fd-muted); }.wire-line.short { width: 58%; }.wireframe-pair button, .prototype-state button { padding: .6rem .8rem; border: 0; background: var(--color-fd-foreground); color: var(--color-fd-background); font: inherit; font-weight: 760; cursor: pointer; }
+.prototype-state { max-width: 34rem; padding: 1.5rem; border: 1px solid var(--color-fd-border); background: var(--color-fd-background); }.prototype-state.failed { border-left: .35rem solid var(--coral); }.prototype-state.ready, .prototype-state.succeeded { border-left: .35rem solid var(--green); }.prototype-state h2 { margin: .6rem 0; font-size: var(--text-xl); }
+.result-plan { display: grid; gap: 1rem; padding: 0; counter-reset: plan; }.result-plan li { display: grid; gap: .35rem; padding: 1rem; border-left: .25rem solid var(--pink); list-style: none; background: var(--color-fd-background); }.result-plan span { color: var(--color-fd-muted-foreground); }
+.result-diagram { justify-content: center; min-height: var(--result-diagram-min-height); }.result-diagram div { border: 1px solid var(--color-fd-border); }.result-diagram span { color: var(--color-fd-primary); font-size: var(--text-result-diagram); }
+.result-caption { margin-top: 1rem; font-size: var(--text-label); }
+.result-phrase { white-space: nowrap; }
+@media (max-width: 640px) { .result-spec, .wireframe-pair { grid-template-columns: 1fr; }.result-diagram { flex-direction: column; }.result-diagram span { transform: rotate(90deg); } }

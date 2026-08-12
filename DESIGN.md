@@ -20,12 +20,13 @@
 2. **토큰 단일 출처** — 모든 컴포넌트는 CSS 커스텀 프로퍼티만 참조하며 하드코딩을 금지합니다.
 3. **한국어 우선, 고유명사 원문 유지** — 본문은 한국어, 고유명사(Effective HTML, GitHub, Anthropic 등)와 `SKILL.md` 코드블록은 원문을 유지합니다.
 
-### 문서 페이지 (10개)
+### 문서 페이지 (11개)
 
 | 경로 | 한국어 제목 |
 |---|---|
 | `/docs` | Effective HTML 가이드 |
 | `/docs/skill-exhibit` | 스킬 활용 사례 |
+| `/docs/skill-results` | 스킬 실행 결과 |
 | `/docs/why-html` | 왜 HTML인가? |
 | `/docs/designing-artifacts` | 아티팩트 디자인하기 |
 | `/docs/choosing-fidelity` | 충실도 선택하기 |
@@ -292,6 +293,13 @@ background-size: 5px 5px;
 - 카드는 `--color-fd-card`와 `--color-fd-border`를 사용하고, 전문 스킬별 밝은 액센트는 상단 레일에만 쓴다.
 - 카드 라벨과 예시 요청 라벨은 본문 대비를 보장하기 위해 `--color-fd-primary`를 사용한다. 라이트에서는 cobalt, 다크에서는 lilac으로 전환된다.
 - 카드 그리드는 기존 small 브레이크포인트인 **640px** 미만에서 한 열로 전환한다. 새 반응형 분기점을 만들지 않는다.
+
+### 5.10 SkillResult
+
+- `/docs/skill-results?skill=`은 여섯 사례의 실제 DOM 결과물을 한 화면씩 전시한다. 스킬 전환 nav와 결과 캔버스가 공통 프리미티브다.
+- 캔버스는 `--color-fd-card`/`--color-fd-border`와 `--color-fd-primary` 레일을 사용한다. 실패·준비 상태는 coral/green 레일과 상태 문구로 구분한다.
+- 여백과 크기는 `--result-*`, `--spacing`, 기존 `--text-*`·radius 토큰을 사용한다. 기존 **640px** 분기점에서 사양·와이어프레임은 한 열, 다이어그램은 세로로 전환한다.
+- 프로토타입은 버튼으로 실패와 재시도 준비 상태를 전환하고 `aria-live`로 상태 변화를 전달한다.
 
 ---
 

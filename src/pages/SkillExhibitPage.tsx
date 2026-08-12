@@ -66,7 +66,7 @@ const EXHIBITS = [
 export default function SkillExhibitPage() {
   return (
     <DocsShell title={page.title} description={page.description} markdown={page.markdown} toc={TOC['skill-exhibit']} prev={nav.prev} next={nav.next}>
-      <p>
+      <p className="skill-exhibit-prose">
         Effective HTML의 기본 흐름은 단순합니다. 먼저 <code>html</code>로 검토 질문을 고르고, 시각적 방향이 아직 열려 있을 때만 <code>design-artifact</code>를 함께 사용한 뒤, 한 가지 전문 스킬이 산출물의 완성 기준을 맡습니다.
       </p>
       <section className="skill-exhibit-intro" aria-label="스킬 선택 흐름">
@@ -74,7 +74,7 @@ export default function SkillExhibitPage() {
         <span className="skill-exhibit-optional"><b>+</b><code>design-artifact</code><span>필요할 때</span></span>
       </section>
       <h2 id="choose-question" className="group-heading"><a data-card href="#choose-question">먼저 질문을 고르세요</a></h2>
-      <p>
+      <p className="skill-exhibit-prose">
         “무엇을 어디에 둘까?”라면 와이어프레임, “이 흐름이 실제로 작동할까?”라면 프로토타입, “무엇을 어떤 순서로 할까?”라면 플랜, “무엇이 어떻게 연결될까?”라면 다이어그램이 맞습니다. 하나의 산출물 안에 여러 질문이 섞여 있으면 <code>html</code>이 가장 가까운 참조를 읽어 조합합니다.
       </p>
       <h2 id="skill-relay" className="group-heading"><a data-card href="#skill-relay">여섯 가지 스킬 릴레이</a></h2>
@@ -85,6 +85,7 @@ export default function SkillExhibitPage() {
             <h3>{exhibit.question}</h3>
             <p>{exhibit.answer}</p>
             <div className="skill-exhibit-prompt"><span>예시 요청</span><code>{exhibit.prompt}</code></div>
+            <Link className="skill-exhibit-run" to={`/docs/skill-results?skill=${exhibit.name}`}>실행 결과 보기</Link>
             <footer>{exhibit.next}</footer>
           </article>
         ))}

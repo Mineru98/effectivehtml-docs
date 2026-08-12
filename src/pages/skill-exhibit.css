@@ -14,6 +14,7 @@
 .skill-exhibit-intro b { color: var(--color-fd-foreground); }
 .skill-exhibit-intro code { color: var(--color-fd-foreground); font-size: var(--text-label); }
 .skill-exhibit-optional { display: inline-flex; align-items: center; gap: .5rem; }
+.skill-exhibit-prose { overflow-wrap: break-word; word-break: keep-all; }
 
 .skill-exhibit-grid {
   display: grid;
@@ -80,6 +81,14 @@
   font-family: var(--font-body);
   font-size: var(--text-label-compact);
   line-height: 1.5;
+}
+
+.skill-exhibit-run {
+  justify-self: start;
+  margin: 0 1rem 1rem;
+  color: var(--color-fd-primary);
+  font-size: var(--text-label-compact);
+  font-weight: 780;
 }
 
 .skill-exhibit-card > footer {
