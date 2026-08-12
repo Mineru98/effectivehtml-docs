@@ -2,6 +2,14 @@
 
 모든 영역은 최신 빌드에서 캡처했습니다. 아래 이미지는 사례 목록, 다섯 개의 정적 결과, 프로토타입의 실패·재시도 준비 상태를 포함합니다.
 
+## 변경 전후
+
+| 전 | 후 |
+| --- | --- |
+| ![실행 결과 화면 추가 전](https://raw.githubusercontent.com/Mineru98/effectivehtml-docs/main/.issue/4/evidence/before/result-html-desktop.webp) | ![html 실행 결과](https://raw.githubusercontent.com/Mineru98/effectivehtml-docs/main/.issue/4/evidence/after/result-html-desktop.webp) |
+
+변경 전에는 실행 결과 경로가 비어 있었고, 변경 후에는 스킬별 결과물을 화면에서 비교해 볼 수 있습니다.
+
 ## 사례 목록
 
 | 데스크톱 | 모바일 |
