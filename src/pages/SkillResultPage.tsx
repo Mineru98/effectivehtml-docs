@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import type { ReactNode } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import './skill-result.css'
 
@@ -31,9 +32,24 @@ function WireframeResult() {
   return <div className="wireframe-pair"><section><small>안 A · 즉시 결제</small><div className="wire-line short" /><div className="wire-line" /><button type="button">결제 계속</button></section><section><small>안 B · 조건 확인</small><div className="wire-line" /><div className="wire-line short" /><button type="button">주문 검토</button></section></div>
 }
 
+type PrototypeStatus = 'failed' | 'ready' | 'succeeded'
+
+const PROTOTYPE_STATES: Record<PrototypeStatus, { readonly label: string; readonly heading: string; readonly description: ReactNode; readonly action: string }> = {
+  failed: { label: '결제 실패', heading: '카드를 승인하지 못했습니다.', description: <>한 번 더 시도하거나 다른 카드로 <span className="result-phrase">바꿀 수 있습니다.</span></>, action: '다시 시도' },
+  ready: { label: '재시도 준비됨', heading: '다시 결제할 수 있습니다.', description: <>입력 내용은 유지됩니다. 결제를 <span className="result-phrase">계속해 보세요.</span></>, action: '결제 다시 시도' },
+  succeeded: { label: '결제 완료', heading: '결제가 완료되었습니다.', description: <>영수증을 확인하고 주문 상태를 <span className="result-phrase">계속 살펴볼 수 있습니다.</span></>, action: '실패 상태 보기' },
+}
+
+const NEXT_PROTOTYPE_STATUS: Record<PrototypeStatus, PrototypeStatus> = {
+  failed: 'ready',
+  ready: 'succeeded',
+  succeeded: 'failed',
+}
+
 function PrototypeResult() {
-  const [status, setStatus] = useState<'failed' | 'ready'>('failed')
-  return <section className={`prototype-state ${status}`} aria-live="polite"><small>{status === 'failed' ? '결제 실패' : '재시도 준비됨'}</small><h2>{status === 'failed' ? '카드를 승인하지 못했습니다.' : '다시 결제할 수 있습니다.'}</h2><p>{status === 'failed' ? <>한 번 더 시도하거나 다른 카드로 <span className="result-phrase">바꿀 수 있습니다.</span></> : <>입력 내용은 유지됩니다. 결제를 <span className="result-phrase">계속해 보세요.</span></>}</p><button type="button" onClick={() => setStatus(status === 'failed' ? 'ready' : 'failed')}>{status === 'failed' ? '다시 시도' : '실패 상태 보기'}</button></section>
+  const [status, setStatus] = useState<PrototypeStatus>('failed')
+  const state = PROTOTYPE_STATES[status]
+  return <section className={`prototype-state ${status}`} aria-live="polite"><small>{state.label}</small><h2>{state.heading}</h2><p>{state.description}</p><button type="button" onClick={() => setStatus(NEXT_PROTOTYPE_STATUS[status])}>{state.action}</button></section>
 }
 
 function PlanResult() {
