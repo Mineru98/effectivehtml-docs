@@ -1,7 +1,7 @@
 {
   "version": 1,
   "provider": "github",
-  "updatedAt": "2026-08-12T11:58:48.754Z",
+  "updatedAt": "2026-08-13T10:30:22.726Z",
   "nodes": {
     "1": {
       "number": 1,
@@ -38,6 +38,24 @@
         "enhancement"
       ],
       "url": "https://github.com/Mineru98/effectivehtml-docs/issues/6"
+    },
+    "9": {
+      "number": 9,
+      "title": "skill-results에서 브라우저 뒤로가기 시 View Transitions API 동작",
+      "status": "close",
+      "labels": [
+        "enhancement"
+      ],
+      "url": "https://github.com/Mineru98/effectivehtml-docs/issues/9"
+    },
+    "10": {
+      "number": 10,
+      "title": "한글 OG 이미지와 공유 메타 추가",
+      "status": "close",
+      "labels": [
+        "enhancement"
+      ],
+      "url": "https://github.com/Mineru98/effectivehtml-docs/issues/10"
     }
   },
   "edges": [
