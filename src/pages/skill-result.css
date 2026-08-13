@@ -8,6 +8,12 @@
 .skill-result-page nav a { padding: .4rem .6rem; border: 1px solid var(--color-fd-border); text-decoration: none; }
 .skill-result-page nav a[aria-current='page'] { background: var(--color-fd-foreground); color: var(--color-fd-background); }
 .skill-result-canvas { margin-top: calc(var(--spacing) * 6); padding: clamp(var(--result-page-gutter), 4vw, var(--result-canvas-padding)); border: 1px solid var(--color-fd-border); border-top: var(--radius-control) solid var(--color-fd-primary); background: var(--color-fd-card); min-height: var(--result-canvas-min-height); }
+.skill-result-canvas.result-html { view-transition-name: skill-result-html; }
+.skill-result-canvas.result-design-artifact { view-transition-name: skill-result-design-artifact; }
+.skill-result-canvas.result-html-wireframe { view-transition-name: skill-result-html-wireframe; }
+.skill-result-canvas.result-html-prototype { view-transition-name: skill-result-html-prototype; }
+.skill-result-canvas.result-html-plan { view-transition-name: skill-result-html-plan; }
+.skill-result-canvas.result-html-diagram { view-transition-name: skill-result-html-diagram; }
 .result-kicker, .result-caption, .prototype-state p { color: var(--color-fd-muted-foreground); line-height: 1.6; }
 .result-route, .result-diagram { display: flex; flex-wrap: wrap; align-items: center; gap: .8rem; padding: 1rem; margin: 2rem 0; background: var(--color-fd-background); border: 1px solid var(--color-fd-border); }
 .result-route code, .result-diagram div { padding: .45rem .65rem; background: var(--color-fd-muted); }

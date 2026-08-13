@@ -105,7 +105,7 @@ export default function SkillExhibitPage() {
               </div>
               <pre><code>{exhibit.prompt}</code></pre>
             </div>
-            <Link className="skill-exhibit-result" to={`/docs/skill-results?skill=${exhibit.name}`}>
+            <Link className="skill-exhibit-result" data-skill={exhibit.name} to={`/docs/skill-results?skill=${exhibit.name}`} viewTransition>
               <span>실행 결과 캡처 보기</span>
               <img src={exhibit.resultImage} width="1280" height="900" alt={`${exhibit.name} 프롬프트를 실행한 결과 화면`} />
             </Link>

@@ -183,6 +183,12 @@ body {
   html {
     scroll-behavior: auto;
   }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
 }
 
 /* Docs 레이아웃 오버라이드 */
