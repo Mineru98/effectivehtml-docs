@@ -126,6 +126,12 @@
 }
 
 .skill-exhibit-result img { display: block; width: 100%; height: auto; border: 1px solid var(--color-fd-border); }
+.skill-exhibit-result[data-skill='html'] img { view-transition-name: skill-result-html; }
+.skill-exhibit-result[data-skill='design-artifact'] img { view-transition-name: skill-result-design-artifact; }
+.skill-exhibit-result[data-skill='html-wireframe'] img { view-transition-name: skill-result-html-wireframe; }
+.skill-exhibit-result[data-skill='html-prototype'] img { view-transition-name: skill-result-html-prototype; }
+.skill-exhibit-result[data-skill='html-plan'] img { view-transition-name: skill-result-html-plan; }
+.skill-exhibit-result[data-skill='html-diagram'] img { view-transition-name: skill-result-html-diagram; }
 
 .skill-exhibit-card > footer {
   padding: .85rem 1rem;

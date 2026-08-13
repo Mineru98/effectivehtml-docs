@@ -77,7 +77,7 @@ export default function SkillResultPage() {
   }, [skill])
   return (
     <main className="skill-result-page">
-      <header><Link to="/docs/skill-exhibit">← 사례 목록으로</Link><p>실행 결과 · <code>{skill}</code></p><h1>{TITLES[skill]}</h1></header>
+      <header><Link to="/docs/skill-exhibit" viewTransition>← 사례 목록으로</Link><p>실행 결과 · <code>{skill}</code></p><h1>{TITLES[skill]}</h1></header>
       <nav aria-label="실행 결과 선택">{SKILLS.map((item) => <Link aria-current={item === skill ? 'page' : undefined} key={item} to={`/docs/skill-results?skill=${item}`}>{item}</Link>)}</nav>
       <section className={`skill-result-canvas result-${skill}`}><Result skill={skill} /></section>
       <p className="result-caption">이 화면은 같은 요청을 해당 스킬의 검토 목표에 맞춰 실행했을 때 <span className="result-phrase">확인할 수 있는</span> 최소 결과물입니다.</p>
